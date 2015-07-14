@@ -1,0 +1,18 @@
+CC=gcc
+INCLUDE=
+#CFLAGS=	-Wall -Werror -ansi
+CFLAGS=	-Wall
+
+all: 	main
+
+main:
+	$(CC) -o main main.c clouding.c
+
+main.o: main.c
+	$(CC) $(CFLAGS) -c main.c clouding.c
+
+clouding.o: clouding.c
+	$(CC) $(CFLAGS) -c clouding.c
+
+clean:
+	rm -f main *.o
