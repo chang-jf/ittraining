@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <time.h>
 #include <parse.h>
+#include <unistd.h>
 #include "clouding.h"
 
 /*void myPushCallback(ParseClient client, int error, const char *buffer) {
@@ -8,17 +8,17 @@
     printf("received push: '%s'\n", buffer);
   }
 }*/
-int main(int argc, char *argv[]) {
-    ParseClient client = parseInitialize("pXOUZN6OVN5aAuLCMm0WvX3yRLJBInn0cmBWA6kj", "9JKl30rKIHt83jlAtcXUGH2UiQj6CFzoIvw4W3Bf");
-    parseSendRequest(client, "POST", "/1/classes/TestObject", "{\"foo\":\"aaa\"}", NULL);
+int main() {
+    ParseClient client = parseInitialize(APPLICATION_ID, CLIENT_KEY);
+    parseSendRequest(client, "POST", "/1/classes/TestObject", "{\"foo\":\"fff\"}", NULL);
     sleep(6);
-    parseSendRequest(client, "POST", "/1/classes/TestObject", "{\"foo\":\"bbb\"}", NULL);
+    parseSendRequest(client, "POST", "/1/classes/TestObject", "{\"foo\":\"ggg\"}", NULL);
     sleep(6);
-    parseSendRequest(client, "POST", "/1/classes/TestObject", "{\"foo\":\"ccc\"}", NULL);
+    parseSendRequest(client, "POST", "/1/classes/TestObject", "{\"foo\":\"hhh\"}", NULL);
     sleep(6);
-    parseSendRequest(client, "POST", "/1/classes/TestObject", "{\"foo\":\"ddd\"}", NULL);
+    parseSendRequest(client, "POST", "/1/classes/TestObject", "{\"foo\":\"iii\"}", NULL);
     sleep(6);
-    parseSendRequest(client, "POST", "/1/classes/TestObject", "{\"foo\":\"eee\"}", NULL);
+    parseSendRequest(client, "POST", "/1/classes/TestObject", "{\"foo\":\"jjj\"}", NULL);
     sleep(6);
     
 parseSetPushCallback(client, myPushCallback);
