@@ -6,7 +6,7 @@ LIBDIRS =
 LIBS = -lparse
 #CFLAGS=	-Wall -Werror -ansi
 CFLAGS=	-Wall
-TARGET = main
+TARGET = quickstart
 
 all: $(TARGET)
 
