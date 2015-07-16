@@ -1,5 +1,5 @@
 CC = gcc
-SRCS = main.c
+SRCS = main.c clouding.c
 OBJS = $(SRCS:.c=.o)
 INCLUDES = /usr/include
 LIBDIRS =

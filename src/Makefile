@@ -3,9 +3,9 @@ SRCS = main.c clouding.c
 OBJS = $(SRCS:.c=.o)
 INCLUDES = /usr/include
 LIBDIRS =
-LIBS = -lparse
+LIBS = -lparse -ljansson
 #CFLAGS=	-Wall -Werror -ansi
-CFLAGS=	-Wall
+CFLAGS=
 TARGET = main
 
 all: $(TARGET)

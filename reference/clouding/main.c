@@ -3,9 +3,12 @@
 int main(int argc, char *argv[]){
     int fd;
     char buffer[BUFFER_SIZE];
-    char command[BUFFER_SIZE];
-    int Humidity=0;
-    int Temperature=0;
+    int num;
+     char command[BUFFER_SIZE];
+    /*
+     *int Humidity=0;
+     *int Temperature=0;
+     */
 
     if(argc < 3){
         //fprintf(stderr, "Usage: %s <hostname> <port>\n", argv[0]);
@@ -14,18 +17,53 @@ int main(int argc, char *argv[]){
         exit(1); 
     }
 
+/*GET /1/classes/TestObject?include=game HTTP/1.1*/
+/*Host: api.parse.com*/
+/*User-Agent: curl/7.43.0*/
+/*Accept: *[>*/
+/*X-Parse-Application-Id: pXOUZN6OVN5aAuLCMm0WvX3yRLJBInn0cmBWA6kj*/
+/*X-Parse-REST-API-Key: aMzETnz9UKWIJRoBX8sytC2wxdItM7Rt6YrnlAuH*/
+
 
     while(1){
 
         fd = socket_connect(argv[1], atoi(argv[2])); 
         srand(time(NULL));
-        Humidity=rand()%100;
-        Temperature=rand()%20+20;
+        /*
+         *Humidity=rand()%100;
+         *Temperature=rand()%20+20;
+         */
         //write(fd, "GET /update?key=WFVT9X78TAM164OX&field1=125.0&field2=80\r\n", strlen("GET /update?key=WFVT9X78TAM164OX&field1=125.0&field2=80\r\n")); // write(fd, char[]*, len);  
         //write(fd, "GET /channels/46080/feed.json?key=WFVT9X78TAM164OX\r\n", strlen("GET /channels/46080/feed.json?key=WFVT9X78TAM164OX\r\n")); // write(fd, char[]*, len);  
-        sprintf(command, "GET /update?key=WFVT9X78TAM164OX&field1=%d&field2=%d\r\n", Humidity, Temperature);
-        printf("inserting command:\n%s", command);
-        write(fd, command, strlen(command)); // write(fd, char[]*, len);  
+        /*
+         *sprintf(command, "GET /update?key=WFVT9X78TAM164OX&field1=%d&field2=%d\r\n", Humidity, Temperature);
+         *printf("inserting command:\n%s", command);
+         *write(fd, command, strlen(command)); // write(fd, char[]*, len);  
+         */
+        sprintf(command,"GET /1/classes/TestObject?include=game HTTP/1.1\n");
+        num=write(fd, "command", strlen("command")); // write(fd, char[]*, len);  
+        if (num==-1) { perror("write"); return -1; }else{printf("%s",command);}
+
+        sprintf(command,"Host: api.parse.com\n");
+        num=write(fd, "command", strlen("command")); // write(fd, char[]*, len);  
+        if (num==-1) { perror("write"); return -1; }else{printf("%s",command);}
+
+        sprintf(command,"User-Agent: curl/7.43.0\n");
+        num=write(fd, "command", strlen("command")); // write(fd, char[]*, len);  
+        if (num==-1) { perror("write"); return -1; }else{printf("%s",command);}
+
+        sprintf(command,"Accept: */*\n");
+        num=write(fd, "command", strlen("command")); // write(fd, char[]*, len);  
+        if (num==-1) { perror("write"); return -1; }else{printf("%s",command);}
+
+        sprintf(command,"X-Parse-Application-Id: pXOUZN6OVN5aAuLCMm0WvX3yRLJBInn0cmBWA6kj\n");
+        num=write(fd, "command", strlen("command")); // write(fd, char[]*, len);  
+        if (num==-1) { perror("write"); return -1; }else{printf("%s",command);}
+
+        sprintf(command,"X-Parse-REST-API-Key: aMzETnz9UKWIJRoBX8sytC2wxdItM7Rt6YrnlAuH\n\n");
+        num=write(fd, "command", strlen("command")); // write(fd, char[]*, len);  
+        if (num==-1) { perror("write"); return -1; }else{printf("%s",command);}
+
 
         bzero(buffer, BUFFER_SIZE);
 

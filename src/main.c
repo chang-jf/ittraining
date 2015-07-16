@@ -10,21 +10,20 @@
 }*/
 int main() {
     ParseClient client = parseInitialize(APPLICATION_ID, CLIENT_KEY);
-    parseSendRequest(client, "POST", "/1/classes/TestObject", "{\"foo\":\"fff\"}", NULL);
+    printf("Initialized\n");
+    parseSendRequest(client, "POST", "/1/classes/TestObject", "{\"temperature\":\"30\", \"humidity\":\"70\"}", NULL);
     sleep(6);
-    parseSendRequest(client, "POST", "/1/classes/TestObject", "{\"foo\":\"ggg\"}", NULL);
-    sleep(6);
-    parseSendRequest(client, "POST", "/1/classes/TestObject", "{\"foo\":\"hhh\"}", NULL);
-    sleep(6);
-    parseSendRequest(client, "POST", "/1/classes/TestObject", "{\"foo\":\"iii\"}", NULL);
-    sleep(6);
-    parseSendRequest(client, "POST", "/1/classes/TestObject", "{\"foo\":\"jjj\"}", NULL);
-    sleep(6);
-    
+    parseSendRequest(client, "GET", "/1/classes/TestObject", NULL, mySendRequestCallback);
+    printf("sent get request\n");
+
+//    curl -X GET -H "X-Parse-Application-Id: pXOUZN6OVN5aAuLCMm0WvX3yRLJBInn0cmBWA6kj" -H "X-Parse-REST-API-Key: aMzETnz9UKWIJRoBX8sytC2wxdItM7Rt6YrnlAuH" -G --data-urlencode 'include=game' https://api.parse.com/1/classes/TestObject
+/*    
 parseSetPushCallback(client, myPushCallback);
+    printf("setted pushcallt\n");
 parseStartPushService(client);
  
 parseRunPushLoop(client);
+*/
     return 0;
 }
 

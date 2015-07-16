@@ -1,0 +1,5 @@
+1. #include <jansson.h> in the beginning of every one source file that uses jansson
+2. cc -o prog prog.c -ljansson  in Makefile
+3. if you see this while make file "ERROR WHILE LOADING SHARED LIBRARIES: LIBJANSSON.SO.4: CANNOT OPEN SHARED OBJECT FILE: NO SUCH FILE OR DIRECTORY"
+    sudo echo “/usr/local/lib” > /etc/ld.so.conf.d/usr_local.confnf;ld sudo ldconfig
+
