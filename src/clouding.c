@@ -1,50 +1,23 @@
-#ifndef _CLOUDING_C
-#define _CLOUDING_C
-#include "clouding.h"
 #include <stdio.h>
-#include <jansson.h>
 #include <string.h>
+#include <parse.h>
+#include <jansson.h>
+#include <unistd.h>
+#include "clouding.h"
 
-char * extract_string(char *str){
-    int len=0;
-    char *newstr=str;
-    if ((len=strlen(str))<2) {
-        return -1;
-    }else{
-        newstr+=11;         //remove {"results": from responsebody
-        newstr[strlen(newstr)-2]=0;
-    }
-    printf("length:%d\nstring:%s\n", strlen(str),str);
-    printf("length:%d\nnewstr:%s\n", strlen(newstr),newstr);
-   return newstr; 
-}
-void myPushCallback(ParseClient client, int error, const char *buffer) {
-    if (error == 0 && buffer != NULL) {
-        printf("received push: ':%s'\n", buffer);
-    }
-}
-
-/* Return the offset of the first newline in text or the length of
-   text if there's no newline */
-static int newline_offset(const char *text)
-{
-    const char *newline = strchr(text, '\n');
-    if(!newline)
-        return strlen(text);
-    else
-        return (int)(newline - text);
-}
-int handleJson(char *Json)
+int handleJson(const char *Json)
 {
     size_t i;
-    char *tmp;
     json_t *root;
     json_error_t err;
-    if((tmp = extract_string(Json))==-1){
-        perror(extract_string);
-        return -1;
-    }
-    root=json_loads(tmp, 0, &err);
+    char *localJson = (char *)malloc(strlen(Json)*sizeof(char));
+
+    printf("JsonFromSrv_length:%ld\nstring:%s\n\n", strlen(Json),Json);
+    strncpy(localJson, Json, strlen(Json)-2);       //tear off last two char '}\0'
+    localJson+=11;                                  //unpack Json which responsed from Parse, remove first 11 chars and last two chars
+
+    printf("handleJson_length:%ld\nstring:%s\n\n", strlen(localJson),localJson);
+    root=json_loads(localJson, 0, &err);
     if(!root){
         fprintf(stderr, "error: on line %d: %s\n", err.line, err.text);
         return -1;
@@ -58,40 +31,39 @@ int handleJson(char *Json)
     for (i = 0; i < json_array_size(root); ++i) {
         json_t *data, *objectId, *temperature, *humidity, *createdAt, *updatedAt;
         
-        //data = json_array_get(Json, i);
         data = json_array_get(root, i);
         if (!json_is_object(data)) {
-            fprintf(stderr, "error: commit data %d is not an object\n", i + 1);
+            fprintf(stderr, "error: commit data %ld is not an object\n", i + 1);
             json_decref(root);
             return -1;
         }
         objectId = json_object_get(data, "objectId");
         if (!json_is_string(objectId)) {
-            fprintf(stderr, "error: record %d objectId is not a string\n", i+1);
+            fprintf(stderr, "error: record %ld objectId is not a string\n", i+1);
             json_decref(root);
             return -1;
         }
         temperature = json_object_get(data, "temperature");
         if (!json_is_string(temperature)) {
-            fprintf(stderr, "error: record %d temperature is not a string\n", i+1);
+            fprintf(stderr, "error: record %ld temperature is not a string\n", i+1);
             json_decref(root);
             return -1;
         }
         humidity = json_object_get(data, "humidity");
         if (!json_is_string(humidity)) {
-            fprintf(stderr, "error: record %d humidity is not a string\n", i+1);
+            fprintf(stderr, "error: record %ld humidity is not a string\n", i+1);
             json_decref(root);
             return -1;
         }
         createdAt = json_object_get(data, "createdAt");
         if (!json_is_string(createdAt)) {
-            fprintf(stderr, "error: record %d createdAt is not a string\n", i+1);
+            fprintf(stderr, "error: record %ld createdAt is not a string\n", i+1);
             json_decref(root);
             return -1;
         }
         updatedAt = json_object_get(data, "updatedAt");
         if (!json_is_string(updatedAt)) {
-            fprintf(stderr,"error: record %d updatedAt is not a string\n", i+1);
+            fprintf(stderr,"error: record %ld updatedAt is not a string\n", i+1);
             json_decref(root);
             return -1;
         }
@@ -102,10 +74,10 @@ int handleJson(char *Json)
 }
 
 void mySendRequestCallback(ParseClient client, int error, int httpStatus, const char *httpResponseBody){
+    (void)client;       //avoid "unused parameter client" warning
 
-    printf("I get call backed\n");
     if (error == 0 && httpResponseBody != NULL) {
-        printf("Sending request success\n");
+        printf("Parse server : Request successed!\n");
         printf("error=%d\n", error);
         printf("httpStatus=%d\n", httpStatus);
         printf("httpResponseBody:\n%s\n", httpResponseBody);
@@ -113,11 +85,85 @@ void mySendRequestCallback(ParseClient client, int error, int httpStatus, const 
         handleJson(httpResponseBody);
 
     }else{
-        printf("Sending request error\n");
-        printf("error=%d\n", error);
+        printf("Parse server : Request failure!\n");
+        printf("error_no=%d\n", error);
         printf("httpStatus=%d\n", httpStatus);
         printf("httpResponseBody:\n%s\n", httpResponseBody);
     }
 }
 
-#endif // for #ifndef _CLOUDING_C
+void myPushCallback(ParseClient client, int error, const char *buffer) {
+    (void) client;
+    if (error == 0 && buffer != NULL) {
+        printf("received push: ':%s'\n", buffer);
+    }
+}
+
+int parseSend(parse_payload payload){
+    ParseClient client = parseInitialize(APPLICATION_ID, CLIENT_KEY);
+    parseSendRequest(client, "POST", PARSE_PATH, payloadToJsonStr(payload), NULL);
+    sleep(RATE_LIMIT);
+    return 0;
+}
+int parseRecv(parse_payload payload){
+    ParseClient client = parseInitialize(APPLICATION_ID, CLIENT_KEY);
+    parseSendRequest(client, "GET", PARSE_PATH, NULL, mySendRequestCallback);
+    sleep(RATE_LIMIT);
+    return 0;
+}
+
+
+//convert payload structure to json object
+json_t  *payloadToJsonObj(parse_payload payload){
+    json_t *obj = json_object();
+    json_object_set_new(obj, "objectId",    json_string(payload.objectId));
+    json_object_set_new(obj, "Temperature", json_string(payload.Temperature));
+    json_object_set_new(obj, "Humidity",    json_string(payload.Humidity));
+    json_object_set_new(obj, "createdAt",   json_string(payload.createdAt));
+    json_object_set_new(obj, "updatedAt",   json_string(payload.updatedAt));
+    return obj;
+}
+//convert json object to payload structure
+parse_payload   jsonObjToPayload(json_t *obj){
+    parse_payload payload;
+
+    payload.objectId    = (char *)malloc(strlen(json_string_value(json_object_get(obj, "objectId"   )))*sizeof(char));
+    payload.Temperature = (char *)malloc(strlen(json_string_value(json_object_get(obj, "Temperature"   )))*sizeof(char));
+    payload.Humidity    = (char *)malloc(strlen(json_string_value(json_object_get(obj, "Humidity"   )))*sizeof(char));
+    payload.createdAt   = (char *)malloc(strlen(json_string_value(json_object_get(obj, "createdAt"   )))*sizeof(char));
+    payload.updatedAt   = (char *)malloc(strlen(json_string_value(json_object_get(obj, "updatedAt"   )))*sizeof(char));
+
+    strcpy(payload.objectId,    json_string_value(json_object_get(obj, "objectId"   )));
+    strcpy(payload.Temperature, json_string_value(json_object_get(obj, "Temperature"   )));
+    strcpy(payload.Humidity,    json_string_value(json_object_get(obj, "Humidity"   )));
+    strcpy(payload.createdAt,   json_string_value(json_object_get(obj, "createdAt"   )));
+    strcpy(payload.updatedAt,   json_string_value(json_object_get(obj, "updatedAt"   )));
+
+    return payload;
+}
+//convert json object to json string
+char *          jsonObjToJsonStr(json_t *obj){
+    char * str;
+    str = json_dumps(obj, 0);
+    json_decref(obj);
+    return str;
+}
+
+//convert json string to json object
+json_t          *jsonStrToJsonObj(char  *str){
+    json_t *obj = json_object();
+    json_error_t err = {0}; 
+    obj = json_loads(str, 0, &err);
+    free(str); 
+    return obj;
+}
+
+//convert payload to json str(payload->jObj->jStr
+char      *payloadToJsonStr(parse_payload payload){
+    return jsonObjToJsonStr( payloadToJsonObj( payload ) );
+}
+
+//convert json str to payload
+parse_payload   JsonStrToPayload(char * str){
+    return jsonObjToPayload(jsonStrToJsonObj(str));
+}

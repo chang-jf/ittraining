@@ -1,11 +1,11 @@
 CC = gcc
 SRCS = main.c clouding.c
 OBJS = $(SRCS:.c=.o)
-INCLUDES = /usr/include
+#INCLUDES = /usr/include
 LIBDIRS =
 LIBS = -lparse -ljansson
 #CFLAGS=	-Wall -Werror -ansi
-CFLAGS=
+CFLAGS= -Wall
 TARGET = main
 
 all: $(TARGET)
