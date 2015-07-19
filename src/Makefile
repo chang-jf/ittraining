@@ -5,7 +5,7 @@ OBJS = $(SRCS:.c=.o)
 LIBDIRS =
 LIBS = -lparse -ljansson
 #CFLAGS=	-Wall -Werror -ansi
-CFLAGS= -Wall
+CFLAGS= -Wall -g3
 TARGET = main
 
 all: $(TARGET)
