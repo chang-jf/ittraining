@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-05-23T07:55:24.950Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36" etag="F-dozG_drKSReU3l2haZ" version="21.3.0" type="github" pages="5">
+<mxfile host="app.diagrams.net" modified="2023-05-23T08:00:42.891Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36" etag="ywA-puJtEyAC2JOpaGbn" version="21.3.0" type="github" pages="5">
   <diagram name="Page-1" id="c37626ed-c26b-45fb-9056-f9ebc6bb27b6">
     <mxGraphModel dx="1114" dy="528" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
       <root>
@@ -2064,35 +2064,40 @@
         <mxCell id="XTWU786uR6Fn9u9qHgsy-6" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" edge="1" parent="1" source="XTWU786uR6Fn9u9qHgsy-1" target="XTWU786uR6Fn9u9qHgsy-4">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="XTWU786uR6Fn9u9qHgsy-12" value="VLAN 1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XTWU786uR6Fn9u9qHgsy-6">
+        <mxCell id="XTWU786uR6Fn9u9qHgsy-12" value="VLAN BAK-A" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XTWU786uR6Fn9u9qHgsy-6">
           <mxGeometry x="-0.2558" y="-1" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="v00YdJdELskIwzK6-Jo--3" value="VLAN Serv-A" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="XTWU786uR6Fn9u9qHgsy-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="174" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="XTWU786uR6Fn9u9qHgsy-1" value="VM A" style="shape=mxgraph.cisco.computers_and_peripherals.pc;sketch=0;html=1;pointerEvents=1;dashed=0;fillColor=#036897;strokeColor=#ffffff;strokeWidth=2;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;" vertex="1" parent="1">
-          <mxGeometry x="160" y="110" width="78" height="70" as="geometry" />
+          <mxGeometry x="135" y="380" width="78" height="70" as="geometry" />
         </mxCell>
         <mxCell id="XTWU786uR6Fn9u9qHgsy-7" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;endArrow=none;endFill=0;" edge="1" parent="1" source="XTWU786uR6Fn9u9qHgsy-2">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="280" y="300" as="targetPoint" />
+            <mxPoint x="255" y="570" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="XTWU786uR6Fn9u9qHgsy-14" value="VLAN 2" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XTWU786uR6Fn9u9qHgsy-7">
+        <mxCell id="XTWU786uR6Fn9u9qHgsy-14" value="VLAN BAK-B" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XTWU786uR6Fn9u9qHgsy-7">
           <mxGeometry x="-0.5097" y="-1" relative="1" as="geometry">
-            <mxPoint as="offset" />
+            <mxPoint x="-9" y="21" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="XTWU786uR6Fn9u9qHgsy-2" value="VM B" style="shape=mxgraph.cisco.computers_and_peripherals.pc;sketch=0;html=1;pointerEvents=1;dashed=0;fillColor=#036897;strokeColor=#ffffff;strokeWidth=2;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;" vertex="1" parent="1">
-          <mxGeometry x="320" y="110" width="78" height="70" as="geometry" />
+          <mxGeometry x="295" y="380" width="78" height="70" as="geometry" />
         </mxCell>
         <mxCell id="XTWU786uR6Fn9u9qHgsy-8" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;endArrow=none;endFill=0;" edge="1" parent="1" source="XTWU786uR6Fn9u9qHgsy-3">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="280" y="300" as="targetPoint" />
+            <mxPoint x="255" y="570" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="XTWU786uR6Fn9u9qHgsy-16" value="VLAN 3" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XTWU786uR6Fn9u9qHgsy-8">
+        <mxCell id="XTWU786uR6Fn9u9qHgsy-16" value="VLAN BAK-C" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XTWU786uR6Fn9u9qHgsy-8">
           <mxGeometry x="-0.5243" y="1" relative="1" as="geometry">
-            <mxPoint y="-1" as="offset" />
+            <mxPoint x="-31" y="20" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="XTWU786uR6Fn9u9qHgsy-11" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" edge="1" parent="1" source="e-2Ia-RnP88J8Yg2snQ1-7" target="XTWU786uR6Fn9u9qHgsy-5">
@@ -2104,11 +2109,11 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="XTWU786uR6Fn9u9qHgsy-3" value="VM C" style="shape=mxgraph.cisco.computers_and_peripherals.pc;sketch=0;html=1;pointerEvents=1;dashed=0;fillColor=#036897;strokeColor=#ffffff;strokeWidth=2;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;" vertex="1" parent="1">
-          <mxGeometry x="490" y="110" width="78" height="70" as="geometry" />
+          <mxGeometry x="465" y="380" width="78" height="70" as="geometry" />
         </mxCell>
         <mxCell id="e-2Ia-RnP88J8Yg2snQ1-2" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="XTWU786uR6Fn9u9qHgsy-4" target="FEEO90Pzmtt_-eRwK6n6-1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="341.98974504249304" y="508" as="targetPoint" />
+            <mxPoint x="316.98974504249304" y="778" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="e-2Ia-RnP88J8Yg2snQ1-4" value="VLAN Backup" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="e-2Ia-RnP88J8Yg2snQ1-2">
@@ -2117,11 +2122,11 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="XTWU786uR6Fn9u9qHgsy-4" value="VM Veeam Proxy" style="shape=mxgraph.cisco.computers_and_peripherals.pc;sketch=0;html=1;pointerEvents=1;dashed=0;fillColor=#036897;strokeColor=#ffffff;strokeWidth=2;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;" vertex="1" parent="1">
-          <mxGeometry x="242" y="300" width="78" height="70" as="geometry" />
+          <mxGeometry x="217" y="570" width="78" height="70" as="geometry" />
         </mxCell>
         <mxCell id="e-2Ia-RnP88J8Yg2snQ1-3" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="XTWU786uR6Fn9u9qHgsy-5" target="FEEO90Pzmtt_-eRwK6n6-1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="359.0050000000001" y="508" as="targetPoint" />
+            <mxPoint x="334.0050000000001" y="778" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="e-2Ia-RnP88J8Yg2snQ1-5" value="VLAN Backup" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="e-2Ia-RnP88J8Yg2snQ1-3">
@@ -2130,19 +2135,31 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="XTWU786uR6Fn9u9qHgsy-5" value="VM Veeam Backup Server" style="shape=mxgraph.cisco.computers_and_peripherals.pc;sketch=0;html=1;pointerEvents=1;dashed=0;fillColor=#036897;strokeColor=#ffffff;strokeWidth=2;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;" vertex="1" parent="1">
-          <mxGeometry x="450" y="300" width="78" height="70" as="geometry" />
+          <mxGeometry x="425" y="570" width="78" height="70" as="geometry" />
         </mxCell>
         <mxCell id="e-2Ia-RnP88J8Yg2snQ1-6" value="Dell EMC Unity 380" style="shape=mxgraph.cisco.storage.fc_storage;sketch=0;html=1;pointerEvents=1;dashed=0;fillColor=#036897;strokeColor=#ffffff;strokeWidth=2;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;" vertex="1" parent="1">
-          <mxGeometry x="342" y="640" width="77" height="43" as="geometry" />
+          <mxGeometry x="317" y="910" width="77" height="43" as="geometry" />
         </mxCell>
         <mxCell id="e-2Ia-RnP88J8Yg2snQ1-7" value="vCenter" style="shape=mxgraph.cisco.computers_and_peripherals.pc;sketch=0;html=1;pointerEvents=1;dashed=0;fillColor=#036897;strokeColor=#ffffff;strokeWidth=2;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;" vertex="1" parent="1">
-          <mxGeometry x="640" y="110" width="78" height="70" as="geometry" />
+          <mxGeometry x="615" y="380" width="78" height="70" as="geometry" />
         </mxCell>
         <mxCell id="FEEO90Pzmtt_-eRwK6n6-2" value="VLAN Backup" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.98;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="FEEO90Pzmtt_-eRwK6n6-1" target="e-2Ia-RnP88J8Yg2snQ1-6">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="FEEO90Pzmtt_-eRwK6n6-1" value="10GE RJ45 SW" style="shape=mxgraph.cisco.switches.workgroup_switch;sketch=0;html=1;pointerEvents=1;dashed=0;fillColor=#036897;strokeColor=#ffffff;strokeWidth=2;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;" vertex="1" parent="1">
-          <mxGeometry x="330" y="510" width="101" height="50" as="geometry" />
+          <mxGeometry x="305" y="780" width="101" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="v00YdJdELskIwzK6-Jo--4" value="VLAN Serv-B" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="XTWU786uR6Fn9u9qHgsy-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="333.5" y="250" as="targetPoint" />
+            <mxPoint x="333.5" y="380" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="v00YdJdELskIwzK6-Jo--5" value="VLAN Serv-C" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="XTWU786uR6Fn9u9qHgsy-3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="503" y="250" as="targetPoint" />
+            <mxPoint x="503" y="380" as="sourcePoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
